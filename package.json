@@ -1,0 +1,23 @@
+{
+  "name": "signalr-iso",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "babel src/ -d dist/",
+    "prepublish": "npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["signalr", "isomorphic"],
+  "author": "Oleh Zymnytskiy",
+  "license": "ISC",
+  "repository": "github:zymnytskiy/signalr-iso",
+  "dependencies": {
+    "isomorphic-fetch": "^2.2.1",
+    "websocket": "^1.0.26"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1"
+  }
+}
