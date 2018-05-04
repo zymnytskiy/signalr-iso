@@ -1,11 +1,11 @@
 {
   "name": "signalr-iso",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
     "build": "babel src/ -d dist/",
-    "prepublish": "npm run build",
+    "prepare": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": ["signalr", "isomorphic"],

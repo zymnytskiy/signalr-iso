@@ -1,9 +1,11 @@
 const EventEmitter = require('events')
-const { URL } = require('url')
+const url = require('url')
 const fetch = require('isomorphic-fetch')
 const { w3cwebsocket: WebSocket } = require('websocket')
 
 const { check } = require('./util')
+
+const URL = global.URL || url.URL
 
 class Client extends EventEmitter {
   constructor ({ uri, hubs }) {
