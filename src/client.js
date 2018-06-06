@@ -19,6 +19,7 @@ class Client extends EventEmitter {
     this._uri = uri
     this._hubs = hubs.map(name => ({ name: name.toLowerCase() }))
     this._msgId = 0
+    this._callbacks = {}
   }
 
   _waitFor (event) {
@@ -37,6 +38,8 @@ class Client extends EventEmitter {
     return this.negotiate()
       .then(response => {
         const url = new URL(`${this._uri}/connect`)
+
+        url.protocol = url.protocol === 'https:' ? 'wss' : 'ws'
 
         url.searchParams.set('clientProtocol', '1.5')
         url.searchParams.set('transport', 'webSockets')
@@ -64,6 +67,13 @@ class Client extends EventEmitter {
         this.emit(`${msg.H}:${msg.M}`, msg.A)
       }
     }
+
+    if (('R' in data) && ('I' in data)) {
+      if (this._callbacks[data.I]) {
+        this._callbacks[data.I](data.R)
+        delete this._callbacks[data.I]
+      }
+    }
   }
 
   invoke (hub, method, args) {
@@ -72,6 +82,16 @@ class Client extends EventEmitter {
       M: method,
       A: args,
       I: ++this._msgId
+    }))
+  }
+
+  call (hub, method, args, cb) {
+    this._callbacks[++this._msgId] = cb
+    this._socket.send(JSON.stringify({
+      H: hub.toLowerCase(),
+      M: method,
+      A: args,
+      I: this._msgId
     }))
   }
 

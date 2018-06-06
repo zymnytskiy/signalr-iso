@@ -1,6 +1,6 @@
 {
   "name": "signalr-iso",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
@@ -8,7 +8,10 @@
     "prepare": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": ["signalr", "isomorphic"],
+  "keywords": [
+    "signalr",
+    "isomorphic"
+  ],
   "author": "Oleh Zymnytskiy",
   "license": "ISC",
   "repository": "github:zymnytskiy/signalr-iso",
