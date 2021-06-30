@@ -63,9 +63,9 @@ class Client extends EventEmitter {
     const data = JSON.parse(e.data)
 
     if (('M' in data) && Array.isArray(data.M)) {
-      for (const msg of data.M) {
+      data.M.forEach(msg => {
         this.emit(`${msg.H}:${msg.M}`, msg.A)
-      }
+      })
     }
 
     if (('R' in data) && ('I' in data)) {

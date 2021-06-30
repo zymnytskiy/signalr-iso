@@ -2,7 +2,7 @@
 
 ## Summary
 
-This is a SignalR client for both node.js and browser environment. This packages provides webSockets transport only.
+SignalR client for both Node.js and Browser environment. This package provides WebSocket transport only.
 
 ## Usage
 
